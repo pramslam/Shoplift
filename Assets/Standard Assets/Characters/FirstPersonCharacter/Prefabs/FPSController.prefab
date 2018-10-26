@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 33935661686558528}
   - component: {fileID: 23653957155356632}
   - component: {fileID: 136105565052505988}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,9 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raycastObject: {fileID: 100002}
-  mask:
-    serializedVersion: 2
-    m_Bits: 1024
+  castDistance: 1
 --- !u!136 &136105565052505988
 CapsuleCollider:
   m_ObjectHideFlags: 1
