@@ -30,6 +30,14 @@ public class Handling : MonoBehaviour {
     // Stow a held item
     public void Stow()
     {
-        Debug.Log("Stow item(s) held.");
+        if (itemsHeld > 0)
+        {
+            itemsHeld--;
+            Debug.Log("Stow item(s) held.");
+        }
+        else
+        {
+            Debug.Log("No item to stow.");
+        }
     }
 }
