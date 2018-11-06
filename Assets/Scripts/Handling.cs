@@ -5,21 +5,7 @@ using UnityEngine;
 public class Handling : MonoBehaviour {
 
     // Tracks items held, temp variable
-    public int itemsHeld = 0;
-
-    // Adds an item to hand
-    public void AddItem(RaycastHit hit)
-    {
-        RaycastHit _hit = hit;
-
-        // Add item to hand
-        itemsHeld++;
-
-        Debug.Log(_hit.collider.name + " picked up.");                                      //Debug Log
-
-        // Remove item from world
-        Destroy(_hit.collider.gameObject);
-    }
+    int itemsHeld = 0;
 
     // Returns held items
     public int GetItems()
@@ -28,12 +14,12 @@ public class Handling : MonoBehaviour {
     }
 
     // Stow a held item
-    public void Stow()
+    public void Stow(GameObject heldItem)
     {
-        if (itemsHeld > 0)
+        if (heldItem != null)
         {
-            itemsHeld--;
-            Debug.Log("Stow item(s) held.");
+            Destroy(heldItem);
+            Debug.Log("Stowed " + heldItem + ".");
         }
         else
         {

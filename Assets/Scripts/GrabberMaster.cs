@@ -4,68 +4,79 @@ using UnityEngine;
 
 public class GrabberMaster : MonoBehaviour {
 
-    private float castDistance = 1.1f;
-    private float originOffset = 0.25f;             // Offsets the origin of raycast
+    private GameObject heldObject;
     private Handling hand;
+
+    private bool holding = false;
+    private float castDistance = 1.3f;
+    private float originOffset = 0.25f;             // Distance of the raycast offset origin
+    private float smooth = 10;                      // Smoothing rate of held item
 
     public GameObject raycastObject;
 
-    void Start()
-    {
+    void Start()    {
         hand = GameObject.FindObjectOfType<Handling>();
     }
 
     // Update is called once per frame
-    void Update ()
-    {
-        if (Input.GetMouseButtonDown(0))
-            Grab();
+    void Update()    {
+        if (holding)
+        {
+            Hold(heldObject);
+            CheckRelease();
+            CheckStow();
+        }
+        else
+            CheckGrab();
+    }
 
+    // Updates the held item position in front of the player
+    void Hold(GameObject item)    {
+        item.transform.position = Vector3.Lerp(item.transform.position, raycastObject.transform.position + raycastObject.transform.forward, Time.deltaTime * smooth);
+    }
+
+    void CheckRelease()    {
         if (Input.GetMouseButtonDown(1))
             Release();
+    }
+
+    void CheckGrab()    {
+        if (Input.GetMouseButtonDown(0))
+            CheckForHit();
+    }
+
+    void CheckStow()    {
         if (Input.GetKeyDown("e"))
-            hand.Stow();
+        {
+            hand.Stow(heldObject);
+            Release();
+        }
     }
 
-    // Grab an item
-    void Grab()
-    {
-        CheckForHit();
-    }
-
-    // Release an item
-    void Release()
-    {
-        Debug.Log(hand.GetItems() + " item(s) held.");
-    }
-
-    void CheckForHit()
-    {
-        RaycastHit hit;
+    void CheckForHit()    {
         Vector3 origin = raycastObject.transform.position + (raycastObject.transform.forward * originOffset);                   // Offsets the raycast start position forward, prevents Raycast from colliding with Player Controller
         Vector3 forward = raycastObject.transform.TransformDirection(Vector3.forward) * castDistance;                           // Get forward direction
+
+        RaycastHit hit;
         Ray ray = new Ray(origin, forward);
 
         if (Physics.Raycast(ray, out hit, castDistance))
         {
-            if (hit.collider.gameObject.tag == "Item")
+            Grabbable item = hit.collider.GetComponent<Grabbable>();
+            if (item != null)
             {
-                // Hits an item
-                hand.AddItem(hit);
-                Debug.DrawRay(ray.origin, ray.direction, Color.red, 10f, false);                // Draw debug ray
-            }
-            else
-            {
-                // Hits object but not an item
-                Debug.Log("Did not Hit!");
-                Debug.DrawRay(ray.origin, ray.direction, Color.yellow, 10f, false);             // Draw debug ray
+                holding = true;
+                heldObject = item.gameObject;
+                heldObject.GetComponent<Rigidbody>().isKinematic = true;
+                Physics.IgnoreCollision(raycastObject.GetComponentInParent<Collider>(), item.GetComponent<Collider>());         // Ignores collision between held object and player
+                Debug.DrawRay(ray.origin, ray.direction, Color.green, 10f, false);                                              // Draw debug ray
             }
         }
-        else
-        {
-            // Hits nothing
-            Debug.Log("Did not Hit!");
-            Debug.DrawRay(origin, forward * castDistance, Color.yellow, 10f, false);            // Draw debug ray
-        }
+    }
+
+    void Release()    {
+        holding = false;
+        heldObject.GetComponent<Rigidbody>().isKinematic = false;
+        heldObject = null;
     }
 }

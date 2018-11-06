@@ -129,7 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1cfeeb2fe70544a81620055282544e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsHeld: 0
 --- !u!1 &786512942
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +140,8 @@ GameObject:
   - component: {fileID: 786512945}
   - component: {fileID: 786512944}
   - component: {fileID: 786512943}
+  - component: {fileID: 786512947}
+  - component: {fileID: 786512948}
   m_Layer: 11
   m_Name: Cube
   m_TagString: Item
@@ -215,6 +216,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &786512947
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 786512942}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &786512948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 786512942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872f7221c0be70548a25005a2b88c30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1003956903
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +253,8 @@ GameObject:
   - component: {fileID: 1003956906}
   - component: {fileID: 1003956905}
   - component: {fileID: 1003956904}
+  - component: {fileID: 1003956908}
+  - component: {fileID: 1003956909}
   m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Item
@@ -300,6 +329,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1003956908
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1003956903}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1003956909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1003956903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872f7221c0be70548a25005a2b88c30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1275858383
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +366,8 @@ GameObject:
   - component: {fileID: 1275858386}
   - component: {fileID: 1275858385}
   - component: {fileID: 1275858384}
+  - component: {fileID: 1275858388}
+  - component: {fileID: 1275858389}
   m_Layer: 11
   m_Name: Cube (2)
   m_TagString: Item
@@ -385,6 +442,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1275858388
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1275858383}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1275858389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1275858383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872f7221c0be70548a25005a2b88c30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1332276577
 Prefab:
   m_ObjectHideFlags: 0
@@ -511,6 +594,16 @@ Prefab:
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114502654710755762, guid: 5e9e851c0e142814dac026a256ba2ac0,
+        type: 2}
+      propertyPath: carryDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114502654710755762, guid: 5e9e851c0e142814dac026a256ba2ac0,
+        type: 2}
+      propertyPath: smooth
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
