@@ -53,6 +53,13 @@ public class GrabberMaster : MonoBehaviour {
         }
     }
 
+    void Release()
+    {
+        holding = false;
+        heldObject.GetComponent<Rigidbody>().isKinematic = false;
+        heldObject = null;
+    }
+
     void CheckForHit()    {
         Vector3 origin = raycastObject.transform.position + (raycastObject.transform.forward * originOffset);                   // Offsets the raycast start position forward, prevents Raycast from colliding with Player Controller
         Vector3 forward = raycastObject.transform.TransformDirection(Vector3.forward) * castDistance;                           // Get forward direction
@@ -72,11 +79,5 @@ public class GrabberMaster : MonoBehaviour {
                 Debug.DrawRay(ray.origin, ray.direction, Color.green, 10f, false);                                              // Draw debug ray
             }
         }
-    }
-
-    void Release()    {
-        holding = false;
-        heldObject.GetComponent<Rigidbody>().isKinematic = false;
-        heldObject = null;
     }
 }

@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Handling : MonoBehaviour {
 
-    // Tracks items held, temp variable
-    int itemsHeld = 0;
+    List<GameObject> inventory;
 
-    // Returns held items
-    public int GetItems()
+    void Start()
     {
-        return itemsHeld;
+        inventory = new List<GameObject>();
+    }
+
+    void Update()
+    {
+        ListCheck();
     }
 
     // Stow a held item
@@ -18,12 +21,30 @@ public class Handling : MonoBehaviour {
     {
         if (heldItem != null)
         {
-            Destroy(heldItem);
+            inventory.Add(heldItem);
+            heldItem.SetActive(false);
             Debug.Log("Stowed " + heldItem + ".");
         }
         else
         {
             Debug.Log("No item to stow.");
+        }
+    }
+
+    // Prints the current list of items
+    void ListCheck()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log(inventory.Count);
+
+            foreach(GameObject list in inventory)
+            {
+                if (list != null)
+                {
+                    Debug.Log(list.name);
+                }
+            }
         }
     }
 }
