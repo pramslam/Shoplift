@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// Detects when a player is within the cctv_collision
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
